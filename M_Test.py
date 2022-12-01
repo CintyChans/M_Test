@@ -7,7 +7,9 @@ import serial.tools.list_ports
 from threading import *
 from log import *
 
-threadthoud=0.0135
+threshold=0.0135
+
+# 8x8
 class PredictModel1(Thread):
     def __init__(self,ser,window):
         super().__init__()
@@ -29,7 +31,7 @@ class PredictModel1(Thread):
                 d,l=self.analyse_data(datastr.strip())       
                 self.window.Z=l[::,:1].reshape(8,8)  
                 stdval=std(l[::,:1].reshape(-1))
-                if stdval<threadthoud:
+                if stdval<threshold:
                     self.window.predictval.set('是')
                 else:
                     self.window.predictval.set('否')
@@ -69,7 +71,7 @@ class PredictModel1(Thread):
         else:
             return None,None
 
-
+# 4x4
 class PredictModel2(Thread):
     def __init__(self,ser,window):
         super().__init__()
@@ -91,7 +93,7 @@ class PredictModel2(Thread):
                 d,l=self.analyse_data(datastr.strip())       
                 self.window.Z=l[::,:1].reshape(4,4)  
                 stdval=std(l[::,:1].reshape(-1))
-                if stdval<threadthoud:
+                if stdval<threshold:
                     self.window.predictval.set('是')
                 else:
                     self.window.predictval.set('否')
