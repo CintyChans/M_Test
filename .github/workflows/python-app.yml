@@ -32,7 +32,14 @@ jobs:
     - name: pyinstaller package
       run: pyinstaller -F M_Test.py 
       
-    - uses: actions/upload-release-asset@v1
+    - name: Upload Linux File amd64
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: M_Test
-        path: ./dist
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ${{ steps.amd64.outputs.location }}
+          asset_name: ${{ steps.amd64.outputs.filename }}
+          asset_content_type: ${{ steps.amd64.outputs.content_type }}
+          name: M_Test
+          path: ./dist
