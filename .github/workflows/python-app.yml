@@ -32,7 +32,7 @@ jobs:
         pip install pyinstaller 
 
     - name: pyinstaller package
-      run: pyinstaller -w -D M_Test.py 
+      run: pyinstaller -w -F M_Test.py 
       
     - uses: actions/upload-artifact@v2
       with:
