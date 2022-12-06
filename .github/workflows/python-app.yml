@@ -29,9 +29,10 @@ jobs:
         pip install numpy
         pip install matplotlib
         pip install pyserial
+        pip install pyinstaller 
 
     - name: pyinstaller package
-      run: pyinstaller -w M_Test.py
+      run: pyinstaller -w M_Test.py -p ./
       
     - uses: actions/upload-artifact@v2
       with:
