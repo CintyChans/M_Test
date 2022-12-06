@@ -10,7 +10,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
         pip install pyserial
         pip install pyinstaller 
     - name: pyinstaller package
-      run: pyinstaller -w -D M_Test.py -p ./ 
+      run: pyinstaller -F M_Test.py 
       
     - uses: actions/upload-artifact@v2
       with:
