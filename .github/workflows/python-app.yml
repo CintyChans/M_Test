@@ -31,7 +31,7 @@ jobs:
         pip install pyserial
 
     - name: pyinstaller package
-      run: pyinstaller -w M_Test.py -p ./
+      run: pyinstaller -w M_Test.py
       
     - uses: actions/upload-artifact@v2
       with:
