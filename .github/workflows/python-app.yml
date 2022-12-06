@@ -32,10 +32,10 @@ jobs:
 
         
     - name: python running
-      run: python3 M_test.py
+      run: python3 M_Test.py
        
     - name: pyinstaller package
-      run: pyinstaller -w M_test.py -p ./
+      run: pyinstaller -w M_Test.py -p ./
       
     - uses: actions/upload-artifact@v2
       with:
