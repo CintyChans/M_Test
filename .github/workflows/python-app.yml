@@ -13,7 +13,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -30,9 +30,9 @@ jobs:
         pip install pyinstaller 
 
     - name: pyinstaller package
-      run: pyinstaller -F M_Test.py 
+      run: pyinstaller -F -w M_Test.py 
       
     - uses: actions/upload-artifact@v2
       with:
         name: M_Test
-        path: dist/M_Test.exe
+        path: ./dist
