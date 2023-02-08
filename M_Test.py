@@ -9,7 +9,22 @@ from log import *
 
 threshold=0.0135
 
-# 8x8
+import configparser
+try:
+    config = configparser.ConfigParser()
+    config.read('default.ini')
+
+    if config.has_section('Parameter'):
+        threshold=config.getfloat('Parameter', 'threshold')
+    else:
+        threshold=0.0135  
+        config.add_section('Parameter')
+        config.set(section='Parameter',option='threshold',value=str(threshold))
+        config.write(open('default.ini', 'w'))
+except:
+    pass
+
+
 class PredictModel1(Thread):
     def __init__(self,ser,window):
         super().__init__()
@@ -71,7 +86,7 @@ class PredictModel1(Thread):
         else:
             return None,None
 
-# 4x4
+
 class PredictModel2(Thread):
     def __init__(self,ser,window):
         super().__init__()
@@ -179,6 +194,8 @@ class MainServer():
             self.window.X,self.window.Y=meshgrid(X,X)
             self.window.Z=zeros((4,4))
             self.program=PredictModel2(self.port,self.window)
+
+
 
     def close(self):
         try:
