@@ -7,6 +7,10 @@ import matplotlib.animation as animation
 _baudrate = '921600'
 _pixel = ['8x8', '4x4']
 _title = 'TOFSense-M_Test'
+_padx = 5
+_pady = 5
+_width = 10
+_sticky = 'we'
 
 
 class Window(Tk):
@@ -24,27 +28,33 @@ class Window(Tk):
         self.stdval = StringVar()
         self.predictval = StringVar()
         self.port_btn = Button(self.frame1, text='扫描串口', bg='white')
-        self.port_box = ttk.Combobox(self.frame1, state='readonly', width=10)
-        self.port_btn.grid(row=0, column=0, sticky="we", pady=5, padx=5)
-        self.port_box.grid(row=0, column=1, sticky="we", pady=5, padx=5)
+        self.port_box = ttk.Combobox(
+            self.frame1, state='readonly', width=_width)
+        self.port_btn.grid(row=0, column=0, sticky=_sticky,
+                           pady=_pady, padx=_padx)
+        self.port_box.grid(row=0, column=1, sticky=_sticky,
+                           pady=_pady, padx=_padx)
         self.baudrate = Entry(
-            self.frame1, textvariable=self.baudrateval, width=10)
+            self.frame1, textvariable=self.baudrateval, width=_width)
         baudrate = Label(self.frame1, text='baudrate:')
-        baudrate.grid(row=0, column=2, sticky="we", pady=5, padx=5)
-        self.baudrate.grid(row=0, column=3, sticky="we", pady=5, padx=5)
+        baudrate.grid(row=0, column=2, sticky=_sticky, pady=_pady, padx=_padx)
+        self.baudrate.grid(row=0, column=3, sticky=_sticky,
+                           pady=_pady, padx=_padx)
         Label(self.frame1, text='pixel:').grid(
-            row=0, column=4, sticky="we", pady=5, padx=5)
-        self.pixel = ttk.Combobox(self.frame1, state='readonly', width=10)
+            row=0, column=4, sticky=_sticky, pady=_pady, padx=_padx)
+        self.pixel = ttk.Combobox(self.frame1, state='readonly', width=_width)
         self.pixel['value'] = _pixel
         self.pixel.current(0)
-        self.pixel.grid(row=0, column=5, sticky="we", pady=5, padx=5)
+        self.pixel.grid(row=0, column=5, sticky=_sticky,
+                        pady=_pady, padx=_padx)
         self.connect_btn = Button(self.frame1, text='连接串口', bg='white')
-        self.connect_btn.grid(row=0, column=6, sticky="we", pady=5, padx=5)
+        self.connect_btn.grid(row=0, column=6, sticky=_sticky,
+                              pady=_pady, padx=_padx)
         Label(self.frame1, text='std:').grid(row=1, column=0)
         self.std = Label(self.frame1, textvariable=self.stdval)
         self.std.grid(row=1, column=1)
         Label(self.frame1, text='平面:').grid(
-            row=1, column=2, sticky="we", pady=5, padx=5)
+            row=1, column=2, sticky=_sticky, pady=_pady, padx=_padx)
         self.predict = Label(
             self.frame1, textvariable=self.predictval, font=('黑体', 50))
         self.predict.grid(row=1, column=3)
