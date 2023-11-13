@@ -1,4 +1,4 @@
-# M_Test
+# M_Test_v2.0
  
 ## 文件构成
 - win.py GUI
@@ -7,4 +7,4 @@
 
 
 - ./log/log_%Y%m%d.log 日志,初次打开M_test测试工具会自动生成log文件夹
-- default.ini 自定义阈值,初次打开M_test测试工具会自动生成,默认为0.024
+- default.ini 参数配置文件
