@@ -1,10 +1,9 @@
-# M_Test_v2.0
- 
-## 文件构成
+# TOF_TEST
+> 文件构成
 - win.py GUI
-- log.py 日志文件
-- M_test.py 主程序入口及数据处理
+- TOF_TEST.py 主程序入口
+- TOFSense.py  TOFSENSE_M&F系列解析
+- env.py 全局变量
 
-
-- ./log/log_%Y%m%d.log 日志,初次打开M_test测试工具会自动生成log文件夹
-- default.ini 参数配置文件
+- ./log/log_%Y%m%d.log 日志,初次打开测试工具会自动生成log文件夹
+- default.json 参数配置文件
