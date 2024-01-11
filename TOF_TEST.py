@@ -10,6 +10,8 @@ from threading import *
 class MainServer:
     def __init__(self):
         self.window = Window()
+        self.program = None
+        self.port = None
         self.TOFSense_M_MS_TAB = self.window.TOFSense_M_MS_TAB
         self.TOFSense_F_FP_TAB = self.window.TOFSense_F_FP_TAB
         self.TOFSense_M_MS_TAB.port_btn.bind("<Button-1>", self.scan_port_M)
@@ -79,7 +81,7 @@ class MainServer:
                 self.program = TOFSENSE_M(self.port, self.TOFSense_M_MS_TAB, data)
                 self.TOFSense_M_MS_TAB.connect_btn.config(bg="#75bbfd", text="关闭串口")
                 log.info(f"type={self.TOFSense_M_MS_TAB.type.get()},params={data}")
-                Thread(target=self.timer, args="M",daemon=True).start()
+                Thread(target=self.timer, args="M", daemon=True).start()
             else:
                 self.TOFSense_M_MS_TAB.connecting = False
                 self.program.close()
@@ -116,13 +118,15 @@ class MainServer:
 
     def close(self):
         try:
-            self.program.close()
-            self.port.close()
+            if self.program:
+                self.program.close()
+            if self.port:
+                self.port.close()
             log.close()
             self.window.destroy()
         except Exception as e:
-            log.error(2)
+            log.error(e)
 
 
-
-server = MainServer()
+if __name__ == "__main__":
+    server = MainServer()
